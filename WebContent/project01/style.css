@@ -101,3 +101,18 @@ footer {
 	height : 26px;
 	background : #ccc;
 }
+#tab3 {
+	widht : 60%;
+	height : 50%;		/* 회원 탈퇴 테이블 스타일 */
+	margin : 0 auto;
+}
+#tab3 input[type=text],[type=password] {
+	width : 60%;
+	height : 26px;
+	border : none;
+}
+#tab3 input[type=button],[type=reset] {
+	width : 20%;
+	height : 26px;
+	background : #ccc;
+}

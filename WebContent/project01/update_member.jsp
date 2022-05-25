@@ -16,7 +16,7 @@
 </header>
 
 <nav>
-<%@include file = "login_nav.jsp" %>
+<%@include file = "nav.jsp" %>
 </nav>
 
 <section>
