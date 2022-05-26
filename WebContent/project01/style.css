@@ -116,3 +116,17 @@ footer {
 	height : 26px;
 	background : #ccc;
 }
+#tab4 {
+	width : 60%;
+	height : 50%;		/* 버스 정류장 검색 테이블 스타일 */
+	margin : 0 auto;
+}
+#search {
+	width : 60%;
+	height : 30px;
+}
+#b1 {
+	width : 10%;
+	height : 30px;
+	background : #ddd;
+}
