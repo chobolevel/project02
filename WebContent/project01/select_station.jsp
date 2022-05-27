@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@include file = "DBConn.jsp" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +21,12 @@
 
 <section>
 <h2>창원시 버스정류장 검색</h2>
-<p align = "center">
-	<input type = "text" name = "search" id = "search" placeholder = "행정구역명을 입력하세요.">
-	<input id = "b1" type = "button" value = "검색" onclick = "search()">
-</p>
+<form name = "form" method = "post" action = "select_station.jsp">
+	<p align = "center">
+		<input type = "text" name = "search" id = "search" placeholder = "행정구역명을 입력하세요.">
+		<input id = "b1" type = "button" value = "검색" onclick = "check()">
+	</p>
+</form>
 <table border = "1" id = "tab4">
 <tr>
 	<th>id</th>
@@ -29,18 +34,44 @@
 	<th>행정구역</th>
 	<th>정류장명</th>
 </tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
+<%
+	String location = request.getParameter("search");
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = "select * from station where position like ?";
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, "%" + location + "%");
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			String id = rs.getString(1);
+			String mobile = rs.getString(2);
+			location = rs.getString(3);
+			String station_name = rs.getString(4);
+			%>
+			<tr>
+				<td><%=id %></td>
+				<td><%=mobile %></td>
+				<td><%=location %></td>
+				<td><%=station_name %></td>
+			</tr>
+			<%
+		}
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+%>
 </table>
 </section>
 
 <footer>
 <%@include file = "footer.jsp" %>
 </footer>
-
+<script>
+function check() {
+	document.form.submit();
+}
+</script>
 </body>
 </html>
