@@ -23,13 +23,13 @@
 <h2>창원시 버스정류장 검색</h2>
 <form name = "form" method = "post" action = "select_station.jsp">
 	<p align = "center">
-		<input type = "text" name = "search" id = "search" placeholder = "행정구역명을 입력하세요.">
+		<input type = "text" name = "search" id = "search" placeholder = "읍/면/동으로 검색">
 		<input id = "b1" type = "button" value = "검색" onclick = "check()">
 	</p>
 </form>
 <table border = "1" id = "tab4">
 <tr>
-	<th>id</th>
+	<th>ID</th>
 	<th>모바일ID</th>
 	<th>행정구역</th>
 	<th>정류장명</th>
@@ -38,7 +38,7 @@
 	String location = request.getParameter("search");
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String sql = "select * from station where position like ?";
+	String sql = "select * from station where location like ?";
 	try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, "%" + location + "%");
